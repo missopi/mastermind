@@ -6,12 +6,36 @@ puts ' '
 puts "================== MASTERMIND =================="
 puts ' '
 
-peg = ['  1  '.colorize(:color => :black, :background => :light_red), '  2  '.colorize(:background => :yellow), 
-    '  3  '.colorize(:color => :black, :background => :light_blue), '  4  '.colorize(:background => :green), 
-    '  5  '.colorize(:color => :black, :background => :light_magenta), '  6  '.colorize(:background => :cyan)]
+class Pegs
+    def initialize 
+        code_pegs = ['  1  '.colorize(:color => :black, :background => :light_red), '  2  '.colorize(:background => :yellow), 
+            '  3  '.colorize(:color => :black, :background => :light_blue), '  4  '.colorize(:background => :green), 
+            '  5  '.colorize(:color => :black, :background => :light_magenta), '  6  '.colorize(:background => :cyan)]
+        
+        key_pegs = [' ● '.colorize(:color => :white), ' ● '.colorize(:color => :red) ]
 
-puts "#{peg[0]}" + " " + "#{peg[1]}" + " " + "#{peg[2]}" + " " + "#{peg[3]}" + " " + "#{peg[4]}" + " " + "#{peg[5]}"
+        puts "#{code_pegs[0]}" + " " + "#{code_pegs[1]}" + " " + "#{code_pegs[2]}" + " " + "#{code_pegs[3]}" + " " + "#{code_pegs[4]}" + " " + "#{code_pegs[5]}" + '    ' + "#{key_pegs[0]}" + "#{key_pegs[1]}"
+        puts ' '
 
+    end
+    
+    def display_code
+    end
+
+    def update_code
+    end       
+end
+
+Pegs.new
+
+class HumanPlayer
+end
+
+class ComputerPlayer
+end
+
+class Game
+end
 
 
 puts 'Enter a 4 digit code to guess the secret code'
