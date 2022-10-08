@@ -58,6 +58,10 @@ class HumanGame
     @keys = Keys.new
   end
 
+  def computer_gen_code
+    @comp_code = [rand(1..6), rand(1..6), rand(1..6), rand(1..6)]
+  end
+
   def convert_choice_to_pegs
     puts 'Enter a 4 digit code to guess the secret code'
     @choice = gets.split('').to_a
@@ -85,11 +89,11 @@ class CompGame
   end
 
   def comp_choice
-    puts '===== comp choice ======'
+    # comp choice is currently random - will need to change so has a strategy later
+    puts '===== comp guess ======'
     puts ' '
     @comp = [rand(1..6), rand(1..6), rand(1..6), rand(1..6)]
     @comp_i = @comp.map { |number| number - 1 }
-    p @comp
   end
 
   def display_comp_choice
