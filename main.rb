@@ -51,18 +51,20 @@ end
 keys = Keys.new
 keys.initial_keys
 
-# handles playing the actual game of mastermind
-class Game
+# handles playing the actual game of mastermind if human playing
+class HumanGame
   def initialize
     @pegs = Pegs.new
+    @keys = Keys.new
   end
 
   def convert_choice_to_pegs
     puts 'Enter a 4 digit code to guess the secret code'
     @choice = gets.split('').to_a
     @choice.pop # removes carriage return rom array
-    @choice.map!(&:to_i)
-    @choice.map! { |number| number - 1 }
+    @choice.map! do |number|
+      number.to_i - 1
+    end
   end
 
   def display_code
@@ -73,5 +75,29 @@ class Game
   end
 end
 
-game = Game.new
+game = HumanGame.new
 game.display_code
+
+# handles if the computer is guessing and the human makes the code
+class CompGame
+  def initialize
+    @pegs = Pegs.new
+  end
+
+  def comp_choice
+    puts '===== comp choice ======'
+    puts ' '
+    @comp = [rand(1..6), rand(1..6), rand(1..6), rand(1..6)]
+    @comp_i = @comp.map { |number| number - 1 }
+    p @comp
+  end
+
+  def display_comp_choice
+    comp_choice
+    puts ' '
+    puts "#{@pegs.pegs[@comp_i[0]]} #{@pegs.pegs[@comp_i[1]]} #{@pegs.pegs[@comp_i[2]]} #{@pegs.pegs[@comp_i[3]]}"
+  end
+end
+
+comp = CompGame.new
+comp.display_comp_choice
