@@ -41,7 +41,7 @@ class Keys
 
   def initial_keys
     puts ' '
-    puts "#{keys[1]} #{keys[1]} #{keys[0]} #{keys[0]}"
+    puts "#{keys[1]}#{keys[1]}#{keys[0]}#{keys[0]}"
     puts ' '
   end
 
@@ -59,13 +59,19 @@ class Game
 
   def convert_choice_to_pegs
     puts 'Enter a 4 digit code to guess the secret code'
-    choice = gets.split('').to_a
-    choice.pop # removes carriage return rom array
-    choice.map!(&:to_i)
-    choice.map! { |number| number - 1 }
-    puts "#{@pegs.pegs[choice[0]]} #{@pegs.pegs[choice[1]]} #{@pegs.pegs[choice[2]]} #{@pegs.pegs[choice[3]]}"
+    @choice = gets.split('').to_a
+    @choice.pop # removes carriage return rom array
+    @choice.map!(&:to_i)
+    @choice.map! { |number| number - 1 }
+  end
+
+  def display_code
+    convert_choice_to_pegs
+    puts ' '
+    puts "#{@pegs.pegs[@choice[0]]} #{@pegs.pegs[@choice[1]]} #{@pegs.pegs[@choice[2]]} #{@pegs.pegs[@choice[3]]}"
+    puts ' '
   end
 end
 
 game = Game.new
-game.convert_choice_to_pegs
+game.display_code
