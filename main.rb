@@ -13,48 +13,48 @@ class ComputerPlayer
 end
 
 # handles the coloured pegs that show the code in the terminal
-class CodePegs
-  attr_reader :code_pegs
+class Pegs
+  attr_reader :pegs
 
   def initialize
-    @code_pegs = ['  1  '.colorize(:color => :black, :background => :light_red), '  2  '.colorize(:background => :yellow),
-                  '  3  '.colorize(:color => :black, :background => :light_blue), '  4  '.colorize(:background => :green),
-                  '  5  '.colorize(:color => :black, :background => :light_magenta), '  6  '.colorize(:background => :cyan)]
+    @pegs = ['  1  '.colorize(:color => :black, :background => :light_red), '  2  '.colorize(:background => :yellow),
+             '  3  '.colorize(:color => :black, :background => :light_blue), '  4  '.colorize(:background => :green),
+             '  5  '.colorize(:color => :black, :background => :light_magenta), '  6  '.colorize(:background => :cyan)]
   end
 
   def initial_pegs
-    puts "#{code_pegs[0]} #{code_pegs[1]} #{code_pegs[2]} #{code_pegs[3]} #{code_pegs[4]} #{code_pegs[5]}"
+    puts "#{pegs[0]} #{pegs[1]} #{pegs[2]} #{pegs[3]} #{pegs[4]} #{pegs[5]}"
     puts ' '
   end
 end
 
-codes = CodePegs.new
+codes = Pegs.new
 codes.initial_pegs
 
 # handles the coloured keys that show when guesses are correct
-class KeyPegs
-  attr_reader :key_pegs
+class Keys
+  attr_reader :keys
 
   def initialize
-    @key_pegs = [' ● '.colorize(:color => :white), ' ● '.colorize(:color => :red)]
+    @keys = [' ● '.colorize(:color => :white), ' ● '.colorize(:color => :red)]
   end
 
   def initial_keys
     puts ' '
-    puts "#{key_pegs[1]} #{key_pegs[1]} #{key_pegs[0]} #{key_pegs[0]}"
+    puts "#{keys[1]} #{keys[1]} #{keys[0]} #{keys[0]}"
     puts ' '
   end
 
-  def display_keys(key_pegs) end
+  def display_keys(keys) end
 end
 
-keys = KeyPegs.new
+keys = Keys.new
 keys.initial_keys
 
 # handles playing the actual game of mastermind
 class Game
   def initialize
-    @code_pegs = CodePegs.new
+    @pegs = Pegs.new
   end
 
   def convert_choice_to_pegs
@@ -63,7 +63,7 @@ class Game
     choice.pop # removes carriage return rom array
     choice.map!(&:to_i)
     choice.map! { |number| number - 1 }
-    puts "#{@code_pegs.code_pegs[choice[0]]} #{@code_pegs.code_pegs[choice[1]]} #{@code_pegs.code_pegs[choice[2]]} #{@code_pegs.code_pegs[choice[3]]}"
+    puts "#{@pegs.pegs[choice[0]]} #{@pegs.pegs[choice[1]]} #{@pegs.pegs[choice[2]]} #{@pegs.pegs[choice[3]]}"
   end
 end
 
