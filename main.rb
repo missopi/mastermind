@@ -22,7 +22,7 @@ class KeyPegs
 
   def initial_keys(key_pegs)
     puts ' '
-    puts key_pegs[1].to_s + key_pegs[1].to_s + key_pegs[0].to_s + key_pegs[0].to_s
+    puts "#{key_pegs[1]}#{key_pegs[1]}#{key_pegs[0]}#{key_pegs[0]}"
     puts ' '
   end
 
