@@ -40,7 +40,7 @@ class CodePegs
   end
 
   def initial_pegs(code_pegs)
-    puts code_pegs[0].to_s + ' ' + code_pegs[1].to_s + ' ' + code_pegs[2].to_s + ' ' + code_pegs[3].to_s + ' ' + code_pegs[4].to_s + ' ' + code_pegs[5].to_s 
+    puts "#{code_pegs[0]} #{code_pegs[1]} #{code_pegs[2]} #{code_pegs[3]} #{code_pegs[4]} #{code_pegs[5]}"
     puts ' '
   end
 end
