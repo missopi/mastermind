@@ -2,10 +2,6 @@
 
 require 'colorize'
 
-puts ' '
-puts '================== MASTERMIND =================='
-puts ' '
-
 class HumanPlayer
 end
 
@@ -28,9 +24,6 @@ class Pegs
   end
 end
 
-codes = Pegs.new
-codes.initial_pegs
-
 # handles the coloured keys that show when guesses are correct
 class Keys
   attr_reader :keys
@@ -48,14 +41,57 @@ class Keys
   def display_keys(keys) end
 end
 
-keys = Keys.new
-keys.initial_keys
+# class to display the title and rules of the game at the beginning
+class MastermindRules
+  def initialize
+    @pegs = Pegs.new
+    @keys = Keys.new
+  end
+
+  def rules
+    puts ' '
+    puts '          ==============================   MASTERMIND   ==============================          '
+    puts ' '
+    puts 'Mastermind is a code breaking game for two players. One player becomes the codemaker, the other '
+    puts 'the codebreaker. The codebreaker tries to guess the pattern, in both order and color, within'
+    puts 'twelve turns.'
+    puts ' '
+  end
+
+  def peg_rules
+    puts 'The codemaker chooses a pattern of four code pegs from six available colours. Duplicates are allowed.'
+    puts ' '
+    @pegs.initial_pegs
+  end
+
+  def key_rules
+    puts 'Once a guess is made, the feedback is given in the form of zero to four white or red keys.'
+    puts 'White keys indicate a correct color code peg placed in the wrong position. Red keys are used when'
+    puts 'the guess is correct in both color and position.'
+    @keys.initial_keys
+  end
+
+  def rules_two
+    puts 'Once feedback is provided, another guess is made; guesses and feedback continue to alternate until'
+    puts 'either the codebreaker guesses correctly, or all rows on the decoding board are full.'
+    puts ' '
+  end
+
+  def display_rules
+    rules
+    peg_rules
+    key_rules
+    rules_two
+    puts '==== end of rules ===='
+  end
+end
 
 # handles playing the actual game of mastermind if human playing
 class HumanGame
   def initialize
     @pegs = Pegs.new
     @keys = Keys.new
+    puts MastermindRules.new.display_rules
   end
 
   def computer_gen_code
@@ -100,6 +136,8 @@ class CompGame
     comp_choice
     puts ' '
     puts "#{@pegs.pegs[@comp_i[0]]} #{@pegs.pegs[@comp_i[1]]} #{@pegs.pegs[@comp_i[2]]} #{@pegs.pegs[@comp_i[3]]}"
+    puts ' '
+    puts ' '
   end
 end
 
