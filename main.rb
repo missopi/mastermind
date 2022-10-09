@@ -19,7 +19,8 @@ class Game
   def initialize_game_type
     choose_game_type
     if @option == 1
-        HumanGame.new
+        human = HumanGame.new
+        human.player_turn
     elsif @option == 2
         CompGame.new
     else
@@ -28,5 +29,5 @@ class Game
   end
 end
 
-game = Game.new
-game.initialize_game_type
+gameone = Game.new
+gameone.initialize_game_type

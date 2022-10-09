@@ -52,5 +52,3 @@ class HumanGame
   end
 end
 
-game = HumanGame.new
-game.player_turn

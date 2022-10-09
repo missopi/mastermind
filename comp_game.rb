@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'colorize'
-require_relative 'rules'
 
 # handles if the computer is guessing and the human makes the code
 class CompGame
