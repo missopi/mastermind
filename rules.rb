@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 require 'colorize'
-require_relative 'pegs.rb'
-require_relative 'keys.rb'
+require_relative 'pegs'
+require_relative 'keys'
 
 # class to display the title and rules of the game at the beginning
 class MastermindRules

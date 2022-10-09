@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 require 'colorize'
+require_relative 'rules'
 require_relative 'human_game'
 require_relative 'comp_game'
 
 # main game class that runs everything
 class Game
-  def initialize
+  def initialize 
     puts MastermindRules.new.display_rules
   end
 
@@ -16,6 +17,7 @@ class Game
   end
 
   def initialize_game_type
+    choose_game_type
     if @option == 1
         HumanGame.new
     elsif @option == 2
@@ -25,3 +27,6 @@ class Game
     end
   end
 end
+
+game = Game.new
+game.initialize_game_type
