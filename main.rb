@@ -15,23 +15,25 @@ class HumanGame
     @comp_code = [rand(1..6), rand(1..6), rand(1..6), rand(1..6)]
   end
 
-  def convert_choice_to_pegs
+  def player_choice
     puts 'Enter a 4 digit code to guess the secret code'
     @choice = gets.split('').to_a
     @choice.pop # removes carriage return rom array
-    @choice.map! do |number|
-      number.to_i - 1
-    end
+    @choice.map!(&:to_i)
   end
 
   def choice_valid?
-    true if @choice == [@choice[0], @choice[1], @choice[2], @choice[3]].all?(0..5)
+    true if @choice.all?(1..6)
+  end
+
+  def convert_choice_to_pegs
+    @convert = @choice.map { |number| number - 1 }
   end
 
   def display_code
     puts ' '
-    puts "#{@pegs.pegs[@choice[0]]} #{@pegs.pegs[@choice[1]]} #{@pegs.pegs[@choice[2]]} #{@pegs.pegs[@choice[3]]}"
-    puts ' '
+    puts "#{@pegs.pegs[@convert[0]]} #{@pegs.pegs[@convert[1]]} #{@pegs.pegs[@convert[2]]} #{@pegs.pegs[@convert[3]]}"
+    puts
   end
 
   def move
@@ -41,11 +43,11 @@ class HumanGame
   end
 
   def player_turn
-    convert_choice_to_pegs
-    if choice_valid == true
-      display code
+    player_choice
+    if choice_valid? == true
+      convert_choice_to_pegs
+      display_code
       @turn += 1
-      win
     else
       puts 'Please choose a valid 4 digit code'
     end
@@ -53,7 +55,7 @@ class HumanGame
 end
 
 game = HumanGame.new
-game.display_code
+game.player_turn
 
 # handles if the computer is guessing and the human makes the code
 class CompGame
