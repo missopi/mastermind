@@ -25,7 +25,7 @@ class HumanGame
   end
 
   def choice_valid?
-    true if @choice == [(0..5).any, (0..5).any, (0..5).any, (0..5).any]
+    true if @choice == [@choice[0], @choice[1], @choice[2], @choice[3]].all?(0..5)
   end
 
   def display_code
