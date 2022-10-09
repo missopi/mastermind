@@ -53,7 +53,7 @@ class MastermindRules
     puts '          ==============================   MASTERMIND   ==============================          '
     puts ' '
     puts 'Mastermind is a code breaking game for two players. One player becomes the codemaker, the other '
-    puts 'the codebreaker. The codebreaker tries to guess the pattern, in both order and color, within'
+    puts 'the codebreaker. The codebreaker tries to guess the pattern, in both order and colour, within'
     puts 'twelve turns.'
     puts ' '
   end
@@ -66,8 +66,8 @@ class MastermindRules
 
   def key_rules
     puts 'Once a guess is made, the feedback is given in the form of zero to four white or red keys.'
-    puts 'White keys indicate a correct color code peg placed in the wrong position. Red keys are used when'
-    puts 'the guess is correct in both color and position.'
+    puts 'White keys indicate a correct colour code peg chosen in the wrong position. Red keys are used when'
+    puts 'the guess is correct in both colour and position.'
     @keys.initial_keys
   end
 
