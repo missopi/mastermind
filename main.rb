@@ -24,11 +24,31 @@ class HumanGame
     end
   end
 
+  def choice_valid?
+    true if @choice == [(0..5).any, (0..5).any, (0..5).any, (0..5).any]
+  end
+
   def display_code
-    convert_choice_to_pegs
     puts ' '
     puts "#{@pegs.pegs[@choice[0]]} #{@pegs.pegs[@choice[1]]} #{@pegs.pegs[@choice[2]]} #{@pegs.pegs[@choice[3]]}"
     puts ' '
+  end
+
+  def move
+    over?
+    @turn = 1
+    player_turn while @turn < 13
+  end
+
+  def player_turn
+    convert_choice_to_pegs
+    if choice_valid == true
+      display code
+      @turn += 1
+      win
+    else
+      puts 'Please choose a valid 4 digit code'
+    end
   end
 end
 
