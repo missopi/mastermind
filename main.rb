@@ -14,6 +14,7 @@ class Game
   def choose_game_type
     puts 'Choose 1 to play as the codebreaker and 2 to play as the codemaker'
     @option = gets.to_i
+    puts ' '
   end
 
   def initialize_game_type
