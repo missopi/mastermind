@@ -15,7 +15,6 @@ class HumanGame
 
   def move
     over?
-    @turn = 1
     player_turn
   end
 
@@ -28,7 +27,7 @@ class HumanGame
   end
 
   def choice_valid?
-    true if @choice.map { |num| num.all?(1..6) }
+    true if @choice.map.all?(1..6)
   end
 
   def convert_choice_to_pegs
@@ -46,7 +45,6 @@ class HumanGame
     player_choice
     if choice_valid? == true
       display_code
-      @turn += 1
       win?
       lose?
     else
