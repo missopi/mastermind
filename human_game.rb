@@ -15,19 +15,12 @@ class HumanGame
 
   def move
     over?
-    player_turn
-  end
-
-  def player_choice
-    puts 'Enter a 4 digit code to guess the secret code'
-    @choice = gets.split('').to_a
-    @choice.pop # removes carriage return rom array
-    @choice.map!(&:to_i)
-    p @choice
+    @guess = 1
+    player_turn while @guess < 13
   end
 
   def choice_valid?
-    true if @choice.map.all?(1..6)
+    true if @choice.all?(1..6)
   end
 
   def convert_choice_to_pegs
@@ -35,25 +28,28 @@ class HumanGame
   end
 
   def display_code
-    convert_choice_to_pegs
     puts ' '
     puts "#{@pegs.pegs[@convert[0]]} #{@pegs.pegs[@convert[1]]} #{@pegs.pegs[@convert[2]]} #{@pegs.pegs[@convert[3]]}"
     puts ' '
   end
 
   def player_turn
-    player_choice
+    puts 'Enter a 4 digit code to guess the secret code'
+    @choice = gets.split('').to_a
+    @choice.pop # removes carriage return rom array
+    @choice.map!(&:to_i)
     if choice_valid? == true
+      convert_choice_to_pegs
       display_code
+      @guess += 1
       win?
-      lose?
     else
       puts 'Please choose a valid 4 digit code'
     end
   end
 
   def win?
-    true if player_choice == @comp_code
+    true if @choice == @comp_code
   end
 
   def convert_comp_code
@@ -65,24 +61,8 @@ class HumanGame
     puts "#{@pegs.pegs[@comp_ct[0]]} #{@pegs.pegs[@comp_ct[1]]} #{@pegs.pegs[@comp_ct[2]]} #{@pegs.pegs[@comp_ct[3]]}"
   end
 
-  def game_end
-    if win? == true
-      @turn = 13
-      puts 'Congratulations, you guessed the code correctly'
-      puts ' '
-    elsif lose == true
-      puts "Unfortunately you didn't guess the code correctly"
-      puts ' '
-    end
-    display_comp_code
-  end
-
-  def lose?
-    true if player_choice != @comp_code && @turn == 12
-  end
-
   def over?
-    win? || lose?
+    win?
   end
 
   def play
