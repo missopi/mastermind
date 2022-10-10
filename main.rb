@@ -21,7 +21,7 @@ class Game
     choose_game_type
     if @option == 1
         human = HumanGame.new
-        human.player_turn
+        human.move
     elsif @option == 2
         CompGame.new
     else

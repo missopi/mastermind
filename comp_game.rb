@@ -24,6 +24,3 @@ class CompGame
     puts ' '
   end
 end
-
-comp = CompGame.new
-comp.display_comp_choice

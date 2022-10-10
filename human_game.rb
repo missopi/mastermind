@@ -13,37 +13,37 @@ class HumanGame
     @comp_code = [rand(1..6), rand(1..6), rand(1..6), rand(1..6)]
   end
 
+  def move
+    over?
+    @turn = 1
+    player_turn
+  end
+
   def player_choice
     puts 'Enter a 4 digit code to guess the secret code'
     @choice = gets.split('').to_a
     @choice.pop # removes carriage return rom array
     @choice.map!(&:to_i)
+    p @choice
   end
 
   def choice_valid?
-    true if @choice.all?(1..6)
-  end
+    true if @choice.map { |num| num.all?(1..6) }
 
   def convert_choice_to_pegs
     @convert = @choice.map { |number| number - 1 }
   end
 
   def display_code
+    convert_choice_to_pegs
     puts ' '
     puts "#{@pegs.pegs[@convert[0]]} #{@pegs.pegs[@convert[1]]} #{@pegs.pegs[@convert[2]]} #{@pegs.pegs[@convert[3]]}"
-    puts
-  end
-
-  def move
-    over?
-    @turn = 1
-    player_turn while @turn < 13
+    puts ' '
   end
 
   def player_turn
     player_choice
     if choice_valid? == true
-      convert_choice_to_pegs
       display_code
       @turn += 1
       win?
@@ -90,4 +90,3 @@ class HumanGame
     move until over?
   end
 end
-
