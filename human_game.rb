@@ -29,6 +29,7 @@ class HumanGame
 
   def choice_valid?
     true if @choice.map { |num| num.all?(1..6) }
+  end
 
   def convert_choice_to_pegs
     @convert = @choice.map { |number| number - 1 }
