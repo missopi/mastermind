@@ -22,14 +22,14 @@ class MastermindRules
   end
   
   def peg_rules
-    puts 'The codemaker chooses a pattern of four code pegs from six available colours. Duplicates are allowed.'
+    puts 'The codemaker chooses a pattern of four code numbers from six available colours. Duplicates are allowed.'
     puts ' '
     @pegs.initial_pegs
   end
   
   def key_rules
     puts 'Once a guess is made, the feedback is given in the form of zero to four white or red keys.'
-    puts 'White keys indicate a correct colour code peg chosen in the wrong position. Red keys are used when'
+    puts 'White keys indicate a correct colour code number chosen in the wrong position. Red keys are used when'
     puts 'the guess is correct in both colour and position.'
     @keys.initial_keys
   end
@@ -45,6 +45,6 @@ class MastermindRules
     peg_rules
     key_rules
     rules_two
-    puts '==== end of rules ===='
+    puts '          ============================================================================          '
   end
 end
