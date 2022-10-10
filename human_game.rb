@@ -46,9 +46,27 @@ class HumanGame
       convert_choice_to_pegs
       display_code
       @turn += 1
+      win?
+      lose?
     else
       puts 'Please choose a valid 4 digit code'
     end
+  end
+
+  def win?
+    true if player_choice == @comp_code
+  end
+
+  def lose?
+    true if player_choice != @comp_code && @turn == 12
+  end
+
+  def over?
+    win? || lose?
+  end
+
+  def play
+    move until over?
   end
 end
 
