@@ -7,7 +7,7 @@ require_relative 'comp_game'
 
 # main game class that runs everything
 class Game
-  def initialize 
+  def initialize
     puts MastermindRules.new.display_rules
   end
 
@@ -20,10 +20,10 @@ class Game
   def initialize_game_type
     choose_game_type
     if @option == 1
-        human = HumanGame.new
-        human.move
+      human = HumanGame.new
+      human.move
     elsif @option == 2
-        CompGame.new
+      CompGame.new
     else
       puts 'Please choose a valid option'.colorize(:color => :red)
     end
