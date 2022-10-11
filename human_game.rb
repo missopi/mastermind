@@ -43,7 +43,7 @@ class HumanGame
       @guess += 1
       win?
     else
-      puts 'Please choose a valid 4 digit code'
+      puts 'Please choose a valid 4 digit code'.colorize(:color => :red)
     end
   end
 

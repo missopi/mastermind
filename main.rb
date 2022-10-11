@@ -25,7 +25,7 @@ class Game
     elsif @option == 2
         CompGame.new
     else
-      puts 'Please choose a valid option'
+      puts 'Please choose a valid option'.colorize(:color => :red)
     end
   end
 end
