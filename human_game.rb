@@ -28,6 +28,7 @@ class HumanGame
   end
 
   def display_code
+    convert_choice_to_pegs
     puts ' '
     puts "#{@pegs.pegs[@convert[0]]} #{@pegs.pegs[@convert[1]]} #{@pegs.pegs[@convert[2]]} #{@pegs.pegs[@convert[3]]}"
     puts ' '
@@ -35,11 +36,9 @@ class HumanGame
 
   def player_turn
     puts 'Enter a 4 digit code to guess the secret code'
-    @choice = gets.split('').to_a
-    @choice.pop # removes carriage return rom array
-    @choice.map!(&:to_i)
+    @choice = gets.split('').map!(&:to_i)
+    @choice.pop # removes carriage return
     if choice_valid? == true
-      convert_choice_to_pegs
       display_code
       @guess += 1
       win?
