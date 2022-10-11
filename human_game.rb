@@ -1,16 +1,14 @@
 # frozen_string_literal: true
 
 require 'colorize'
+require_relative 'comp_code'
 
 # handles playing the actual game of mastermind if human playing
 class HumanGame
   def initialize
     @pegs = Pegs.new
     @keys = Keys.new
-  end
-
-  def computer_gen_code
-    @comp_code = [rand(1..6), rand(1..6), rand(1..6), rand(1..6)]
+    @comp_code = CompCode.new
   end
 
   def move
@@ -34,8 +32,7 @@ class HumanGame
   end
 
   def display_keys
-    puts "      #{@keys.keys[1]}#{@keys.keys[1]}#{@keys.keys[0]}#{@keys.keys[0]}"
-    puts ' '
+    puts 'hi'
   end
 
   def player_turn
@@ -53,15 +50,6 @@ class HumanGame
 
   def win?
     true if @choice == @comp_code
-  end
-
-  def convert_comp_code
-    @comp_ct = @comp_code.map { |number| number - 1 }
-  end
-
-  def display_comp_code
-    convert_comp_code
-    puts "#{@pegs.pegs[@comp_ct[0]]} #{@pegs.pegs[@comp_ct[1]]} #{@pegs.pegs[@comp_ct[2]]} #{@pegs.pegs[@comp_ct[3]]}"
   end
 
   def over?
