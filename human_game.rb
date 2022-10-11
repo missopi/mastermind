@@ -30,19 +30,17 @@ class HumanGame
     convert_choice_to_pegs
     puts ' '
     print "#{@pegs.pegs[@convert[0]]} #{@pegs.pegs[@convert[1]]} #{@pegs.pegs[@convert[2]]} #{@pegs.pegs[@convert[3]]} "
+    print '    '
   end
 
   def display_red_keys
-    print '    '
-    @comp_code.comp_code.each do |code|
-      @choice.each do |number|
-        if number == code
-          print @keys.keys[1].to_s
-        else
-          print ''
-        end
+    @comp_code.comp_code.each_with_index do |code, index1|
+      @choice.each_with_index do |num, index2|
+        print @keys.keys[1].to_s if num == code && index2 == index1
       end
     end
+    puts ' '
+    puts ' '
   end
 
   def player_turn
