@@ -30,11 +30,13 @@ class HumanGame
   def display_code
     convert_choice_to_pegs
     puts ' '
-    puts "#{@pegs.pegs[@convert[0]]} #{@pegs.pegs[@convert[1]]} #{@pegs.pegs[@convert[2]]} #{@pegs.pegs[@convert[3]]}"
-    puts ' '
+    print "#{@pegs.pegs[@convert[0]]} #{@pegs.pegs[@convert[1]]} #{@pegs.pegs[@convert[2]]} #{@pegs.pegs[@convert[3]]} "
   end
 
-  def display_keys() end
+  def display_keys
+    puts "      #{@keys.keys[1]}#{@keys.keys[1]}#{@keys.keys[0]}#{@keys.keys[0]}"
+    puts ' '
+  end
 
   def player_turn
     puts 'Enter a 4 digit code to guess the secret code'
@@ -43,6 +45,7 @@ class HumanGame
       display_code
       @guess += 1
       win?
+      display_keys
     else
       puts 'Please choose a valid 4 digit code'.colorize(:color => :red)
     end
