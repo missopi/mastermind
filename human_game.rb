@@ -32,20 +32,17 @@ class HumanGame
     print "#{@pegs.pegs[@convert[0]]} #{@pegs.pegs[@convert[1]]} #{@pegs.pegs[@convert[2]]} #{@pegs.pegs[@convert[3]]} "
   end
 
-  def display_keys
+  def display_red_keys
     print '    '
-    if @choice[0] == @comp_code.comp_code[0] || @choice[1] == @comp_code.comp_code[1] || @choice[2] == @comp_code.comp_code[2] || @choice[3] == @comp_code.comp_code[3]
-      print @keys.keys[1].to_s
-    elsif @choice[0] == @comp_code.comp_code[1] || @choice[0] == @comp_code.comp_code[2] || @choice[0] == @comp_code.comp_code[3]
-      print @keys.keys[0].to_s
-    elsif @choice[1] == @comp_code.comp_code[2] || @choice[1] == @comp_code.comp_code[3] || @choice[1] == @comp_code.comp_code[0]
-      print @keys.keys[0].to_s
-    elsif @choice[2] == @comp_code.comp_code[3] || @choice[2] == @comp_code.comp_code[0] || @choice[2] == @comp_code.comp_code[1]
-      print @keys.keys[0].to_s
-    elsif @choice[3] == @comp_code.comp_code[0] || @choice[3] == @comp_code.comp_code[1] || @choice[3] == @comp_code.comp_code[2]
-      print @keys.keys[0].to_s
+    @comp_code.comp_code.each do |code|
+      @choice.each do |number|
+        if number == code
+          print @keys.keys[1].to_s
+        else
+          print ''
+        end
+      end
     end
-    puts '   '
   end
 
   def player_turn
@@ -55,7 +52,7 @@ class HumanGame
       display_code
       @guess += 1
       win?
-      display_keys
+      display_red_keys
     else
       puts 'Please choose a valid 4 digit code'.colorize(:color => :red)
     end
