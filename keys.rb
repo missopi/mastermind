@@ -15,6 +15,4 @@ class Keys
     puts "#{keys[1]}#{keys[1]}#{keys[0]}#{keys[0]}"
     puts ' '
   end
-  
-  def display_keys(keys) end
 end
