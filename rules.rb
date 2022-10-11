@@ -36,7 +36,7 @@ class MastermindRules
   
   def rules_two
     puts 'Once feedback is provided, another guess is made; guesses and feedback continue to alternate until'
-    puts 'either the codebreaker guesses correctly, or all rows on the decoding board are full.'
+    puts 'either the codebreaker finds the correct code, or runs out of guesses.'
     puts ' '
   end
   
