@@ -12,6 +12,7 @@ class HumanGame
   end
 
   def move
+    @comp_code.display_code
     over?
     @guess = 1
     player_turn while @guess < 13
@@ -32,7 +33,19 @@ class HumanGame
   end
 
   def display_keys
-    puts 'hi'
+    print '    '
+    if @choice[0] == @comp_code.comp_code[0] || @choice[1] == @comp_code.comp_code[1] || @choice[2] == @comp_code.comp_code[2] || @choice[3] == @comp_code.comp_code[3]
+      print @keys.keys[1].to_s
+    elsif @choice[0] == @comp_code.comp_code[1] || @choice[0] == @comp_code.comp_code[2] || @choice[0] == @comp_code.comp_code[3]
+      print @keys.keys[0].to_s
+    elsif @choice[1] == @comp_code.comp_code[2] || @choice[1] == @comp_code.comp_code[3] || @choice[1] == @comp_code.comp_code[0]
+      print @keys.keys[0].to_s
+    elsif @choice[2] == @comp_code.comp_code[3] || @choice[2] == @comp_code.comp_code[0] || @choice[2] == @comp_code.comp_code[1]
+      print @keys.keys[0].to_s
+    elsif @choice[3] == @comp_code.comp_code[0] || @choice[3] == @comp_code.comp_code[1] || @choice[3] == @comp_code.comp_code[2]
+      print @keys.keys[0].to_s
+    end
+    puts '   '
   end
 
   def player_turn
