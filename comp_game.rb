@@ -12,8 +12,8 @@ class CompGame
     # comp choice is currently random - will need to change so has a strategy later
     puts '===== comp guess ======'
     puts ' '
-    @comp = [rand(1..6), rand(1..6), rand(1..6), rand(1..6)]
-    @comp_i = @comp.map { |number| number - 1 }
+    @comp_guess = [rand(1..6), rand(1..6), rand(1..6), rand(1..6)]
+    @comp_i = @comp_guess.map { |number| number - 1 }
   end
 
   def display_comp_choice
