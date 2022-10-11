@@ -34,10 +34,11 @@ class HumanGame
     puts ' '
   end
 
+  def display_keys() end
+
   def player_turn
     puts 'Enter a 4 digit code to guess the secret code'
-    @choice = gets.split('').map!(&:to_i)
-    @choice.pop # removes carriage return
+    @choice = gets.chomp.split('').map!(&:to_i)
     if choice_valid? == true
       display_code
       @guess += 1
