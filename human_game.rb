@@ -33,7 +33,7 @@ class HumanGame
     print '    '
   end
 
-  def display_keys
+  def display_red
     @comp_code.comp_code.each_with_index do |code, index1|
       @found = false
       @choice.each_with_index do |num, index2|
@@ -41,6 +41,7 @@ class HumanGame
           print @keys.keys[1].to_s
           @found = true
         end
+        break if @found
       end
     end
   end
@@ -48,12 +49,18 @@ class HumanGame
   def display_white
     @comp_code.comp_code.each_with_index do |code, index1|
       @choice.each_with_index do |num, index2|
-        if @found == false && num == code && index2 != index1
-          print @keys.keys[0].to_s
+        if num == code && index2 != index1
+          print @keys.keys[0].to_s if @found == false
           @found = true
         end
+        break if @found
       end
     end
+  end
+
+  def display_keys
+    display_red
+    display_white
   end
 
   def player_turn
@@ -64,7 +71,6 @@ class HumanGame
       @guess += 1
       win?
       display_keys
-      display_white
     else
       puts 'Please choose a valid 4 digit code'.colorize(:color => :red)
     end
