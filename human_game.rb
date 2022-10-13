@@ -53,7 +53,6 @@ class HumanGame
           print @keys.keys[0].to_s if @found == false
           @found = true
         end
-        break if @found
       end
     end
   end
