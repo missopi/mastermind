@@ -8,6 +8,7 @@ class CompCode
 
   def initialize
     @comp_code = Array.new(4) { rand(1...6) }
+    @pegs = Pegs.new
   end
 
   def display_code
