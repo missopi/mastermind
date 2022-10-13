@@ -19,10 +19,11 @@ class Game
 
   def initialize_game_type
     choose_game_type
-    if @option == 1
+    case @option
+    when 1
       human = HumanGame.new
       human.move
-    elsif @option == 2
+    when 2
       CompGame.new
     else
       puts 'Please choose a valid option'.colorize(:color => :red)
