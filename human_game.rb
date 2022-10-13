@@ -12,7 +12,6 @@ class HumanGame
   end
 
   def move
-    @comp_code.display_code
     over?
     @guess = 1
     player_turn while @guess < 13
@@ -28,20 +27,18 @@ class HumanGame
 
   def display_code
     convert_choice_to_pegs
-    puts ' '
-    print "#{@pegs.pegs[@convert[0]]} #{@pegs.pegs[@convert[1]]} #{@pegs.pegs[@convert[2]]} #{@pegs.pegs[@convert[3]]} "
+    print "\n#{@pegs.pegs[@convert[0]]} #{@pegs.pegs[@convert[1]]} #{@pegs.pegs[@convert[2]]} #{@pegs.pegs[@convert[3]]} "
     print '    '
   end
 
   def display_red
     @comp_code.comp_code.each_with_index do |code, index1|
-      @found = false
       @choice.each_with_index do |num, index2|
+        @found = false
         if num == code && index2 == index1
           print @keys.keys[1].to_s
           @found = true
         end
-        break if @found
       end
     end
   end
@@ -49,8 +46,8 @@ class HumanGame
   def display_white
     @comp_code.comp_code.each_with_index do |code, index1|
       @choice.each_with_index do |num, index2|
-        if num == code && index2 != index1
-          print @keys.keys[0].to_s if @found == false
+        if num == code && index2 != index1 && @found == false
+          print @keys.keys[0].to_s
           @found = true
         end
       end
@@ -68,19 +65,25 @@ class HumanGame
     if choice_valid? == true
       display_code
       @guess += 1
-      win?
+      win
       display_keys
     else
       puts 'Please choose a valid 4 digit code'.colorize(:color => :red)
     end
   end
 
-  def win?
-    true if @choice == @comp_code
+  def win
+    if @choice == @comp_code.comp_code
+      @guess = 13
+      puts "\n\nCongratuations you guessed the secret code correctly!\n"
+    elsif @choice != @comp_code.comp_code && @guess == 13
+      puts "\n\nUnfortunately you didn't crack the secret code this time.\n"
+      @comp_code.display_comp_code_pegs
+    end
   end
 
   def over?
-    win?
+    win
   end
 
   def play
