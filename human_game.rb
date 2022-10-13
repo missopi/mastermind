@@ -60,13 +60,13 @@ class HumanGame
   end
 
   def player_turn
-    puts "\n\n\Enter a 4 digit code to guess the secret code"
+    puts "\n\nEnter a 4 digit code to guess the secret code"
     @choice = gets.chomp.split('').map!(&:to_i)
     if choice_valid? == true
       display_code
       @guess += 1
-      win
       display_keys
+      win
     else
       puts 'Please choose a valid 4 digit code'.colorize(:color => :red)
     end
@@ -77,8 +77,9 @@ class HumanGame
       @guess = 13
       puts "\n\nCongratuations you guessed the secret code correctly!\n"
     elsif @choice != @comp_code.comp_code && @guess == 13
-      puts "\n\nUnfortunately you didn't crack the secret code this time.\n"
+      puts "\n\nUnfortunately you didn't crack the secret code this time.\n\n"
       @comp_code.display_comp_code_pegs
+      puts ' '
     end
   end
 
