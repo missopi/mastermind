@@ -75,7 +75,7 @@ class HumanGame
   def win
     if @choice == @comp_code.comp_code
       @guess = 13
-      puts "\n\nCongratuations you guessed the secret code correctly!\n"
+      puts "\n\nCongratuations you guessed the secret code correctly!\n\n"
     elsif @choice != @comp_code.comp_code && @guess == 13
       puts "\n\nUnfortunately you didn't crack the secret code this time.\n\n"
       @comp_code.display_comp_code_pegs
