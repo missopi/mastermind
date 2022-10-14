@@ -7,9 +7,12 @@ class Pegs
   attr_reader :pegs
 
   def initialize
-    @pegs = ['  1  '.colorize(:color => :black, :background => :light_red), '  2  '.colorize(:background => :yellow),
-             '  3  '.colorize(:color => :black, :background => :light_blue), '  4  '.colorize(:background => :green),
-             '  5  '.colorize(:color => :black, :background => :light_magenta), '  6  '.colorize(:background => :cyan)]
+    @pegs = ['  1  '.colorize(:color => :black, :background => :light_red),
+             '  2  '.colorize(:background => :yellow),
+             '  3  '.colorize(:color => :black, :background => :light_blue),
+             '  4  '.colorize(:background => :green),
+             '  5  '.colorize(:color => :black, :background => :light_magenta),
+             '  6  '.colorize(:background => :cyan)]
   end
 
   def initial_pegs
