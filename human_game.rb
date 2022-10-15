@@ -33,12 +33,13 @@ class HumanGame
 
   def display_red
     @comp_code.comp_code.each_with_index do |code, index1|
+      @found = false
       @choice.each_with_index do |num, index2|
-        @found = false
         if num == code && index2 == index1
-          print @keys.keys[1].to_s
           @found = true
+          print @keys.keys[1].to_s
         end
+        break if @found
       end
     end
   end
@@ -47,9 +48,10 @@ class HumanGame
     @comp_code.comp_code.each_with_index do |code, index1|
       @choice.each_with_index do |num, index2|
         if num == code && index2 != index1 && @found == false
+          @white_found = true
           print @keys.keys[0].to_s
-          @found = true
         end
+        break if @white_found
       end
     end
   end
