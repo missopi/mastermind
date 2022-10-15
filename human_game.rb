@@ -33,25 +33,27 @@ class HumanGame
   end
 
   def display_result
-    h_matches = []
-    c_matches = []
-    @choice.each_index do |i|
-      if @choice[i] == @comp_code.comp_code[i]
-        print @keys.keys[1].to_s
-        h_matches << i
-        c_matches << i
-      end
+    human_matches = []
+    comp_matches = []
+    @choice.each_index do |index|
+      next unless @choice[index] == @comp_code.comp_code[index]
+
+      print @keys.keys[1].to_s
+      human_matches << index
+      comp_matches << index
     end
 
-    @choice.each_index do |i|
-      next if h_matches.include?(i)
-      @comp_code.comp_code.each_index do |j|
-        next if c_matches.include?(j)
-        if @choice[i] == @comp_code.comp_code[j]
-          print @keys.keys[0].to_s
-          h_matches << i
-          c_matches << j
-        end
+    @choice.each_index do |index|
+      next if human_matches.include?(index)
+
+      @comp_code.comp_code.each_index do |comp_index|
+        next if comp_matches.include?(comp_index)
+
+        next unless @choice[index] == @comp_code.comp_code[comp_index]
+
+        print @keys.keys[0].to_s
+        human_matches << index
+        comp_matches << comp_index
       end
     end
   end
