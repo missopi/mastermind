@@ -12,7 +12,6 @@ class HumanGame
   end
 
   def move
-    @computer.display_random_code
     over?
     @guess = 1
     player_turn while @guess < 13
