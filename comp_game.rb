@@ -5,22 +5,51 @@ require 'colorize'
 # handles if the computer is guessing and the human makes the code
 class CompGame
   def initialize
-    @pegs = Pegs.new
+    @peg = Pegs.new
   end
 
-  def comp_choice
+  def move
+    over?
+    @guess = 1
+    display_guess while @guess < 13
+  end
+
+  def user_input_valid?
+    true if @user_input.all?(1..6)
+  end
+
+  def computer_guess
     # comp choice is currently random - will need to change so has a strategy later
-    puts '===== comp guess ======'
-    puts ' '
-    @comp_guess = [rand(1..6), rand(1..6), rand(1..6), rand(1..6)]
-    @comp_i = @comp_guess.map { |number| number - 1 }
+    @comp_random_code = [rand(1..6), rand(1..6), rand(1..6), rand(1..6)]
+    @index = @comp_random_code.map { |number| number - 1 }
   end
 
-  def display_comp_choice
-    comp_choice
-    puts ' '
-    puts "#{@pegs.pegs[@comp_i[0]]} #{@pegs.pegs[@comp_i[1]]} #{@pegs.pegs[@comp_i[2]]} #{@pegs.pegs[@comp_i[3]]}"
-    puts ' '
-    puts ' '
+  def display_guess
+    computer_guess
+    puts "\nThe computer chose: #{@peg.colour[@index[0]]} #{@peg.colour[@index[1]]} #{@peg.colour[@index[2]]} #{@peg.colour[@index[3]]}\n"
+    win
+  end
+
+  def start
+    puts "\nChoose a 4 digit code for the computer to try and guess"
+    @user_input = gets.chomp.split('').map!(&:to_i)
+    if user_input_valid? == true
+      move
+    else
+      puts 'Please choose a valid 4 digit code'.colorize(:color => :red)
+    end
+  end
+
+  def win
+    if @comp_random_code == @user_input
+      @guess = 13
+      puts "\nThe computer guessed the code correctly."
+    elsif @comp_random_code != @user_input && @guess == 13
+      puts "\nThe computer failed to guess the code."
+    end
+  end
+
+  def over?
+    win
   end
 end
