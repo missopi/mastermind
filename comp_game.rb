@@ -19,7 +19,17 @@ class CompGame
   end
 
   def computer_first_guess
-    @comp_random_code = [rand(1..6), rand(1..6), rand(1..6), rand(1..6)]
+    @comp_random_code = Array.new(4) { rand(1...6) }
+  end
+
+  def new_guesses
+    correct_guess = []
+    @comp_random_code.each_index do |index|
+      correct_guess << index if @comp_random_code[index] == @user_input[index]
+      if correct_guess.include?(index)
+        @comp_random_code.pop
+      end
+    end
   end
 
   def convert_guess_to_index

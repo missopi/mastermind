@@ -24,3 +24,4 @@ class CompCode
     puts "#{@peg.colour[@index[0]]} #{@peg.colour[@index[1]]} #{@peg.colour[@index[2]]} #{@peg.colour[@index[3]]}"
   end
 end
+
