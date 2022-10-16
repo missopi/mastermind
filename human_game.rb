@@ -8,11 +8,11 @@ class HumanGame
   def initialize
     @pegs = Pegs.new
     @keys = Keys.new
-    @comp_code = CompCode.new
+    @computer = CompCode.new
   end
 
   def move
-    @comp_code.display_comp_code_pegs
+    @computer.display_pegs
     over?
     @guess = 1
     player_turn while @guess < 13
@@ -36,24 +36,24 @@ class HumanGame
     human_matches = []
     comp_matches = []
     @choice.each_index do |index|
-      next unless @choice[index] == @comp_code.comp_code[index]
-
-      print @keys.keys[1].to_s
-      human_matches << index
-      comp_matches << index
+      if @choice[index] == @computer.random_code[index]
+        print @keys.keys[1].to_s
+        human_matches << index
+        comp_matches << index
+      end
     end
 
     @choice.each_index do |index|
       next if human_matches.include?(index)
 
-      @comp_code.comp_code.each_index do |comp_index|
+      @computer.random_code.each_index do |comp_index|
         next if comp_matches.include?(comp_index)
 
-        next unless @choice[index] == @comp_code.comp_code[comp_index]
-
-        print @keys.keys[0].to_s
-        human_matches << index
-        comp_matches << comp_index
+        if @choice[index] == @computer.random_code[comp_index]
+          print @keys.keys[0].to_s
+          human_matches << index
+          comp_matches << comp_index
+        end
       end
     end
   end
@@ -72,12 +72,12 @@ class HumanGame
   end
 
   def win
-    if @choice == @comp_code.comp_code
+    if @choice == @computer.random_code
       @guess = 13
       puts "\n\nCongratuations you guessed the secret code correctly!\n\n"
-    elsif @choice != @comp_code.comp_code && @guess == 13
+    elsif @choice != @computer.random_code && @guess == 13
       puts "\n\nUnfortunately you didn't crack the secret code this time.\n\n"
-      @comp_code.display_comp_code_pegs
+      @computer.display_pegs
       puts ' '
     end
   end
