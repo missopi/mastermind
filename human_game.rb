@@ -12,7 +12,7 @@ class HumanGame
   end
 
   def move
-    @computer.display_pegs
+    @computer.display_random_code
     over?
     @guess = 1
     player_turn while @guess < 13
@@ -26,13 +26,13 @@ class HumanGame
     @index = @user_input.map { |number| number - 1 }
   end
 
-  def display_code
+  def display_user_code
     convert_user_input_to_index
     print "\n#{@peg.colour[@index[0]]} #{@peg.colour[@index[1]]} #{@peg.colour[@index[2]]} #{@peg.colour[@index[3]]} "
     print '    '
   end
 
-  def display_result
+  def display_feedback
     human_matches = []
     computer_matches = []
     @user_input.each_index do |index|
@@ -62,9 +62,9 @@ class HumanGame
     puts "\n\nEnter a 4 digit code to guess the secret code"
     @user_input = gets.chomp.split('').map!(&:to_i)
     if user_input_valid? == true
-      display_code
+      display_user_code
       @guess += 1
-      display_result
+      display_feedback
       win
     else
       puts 'Please choose a valid 4 digit code'.colorize(:color => :red)
@@ -77,7 +77,7 @@ class HumanGame
       puts "\n\nCongratuations you guessed the secret code correctly!\n\n"
     elsif @user_input != @computer.random_code && @guess == 13
       puts "\n\nUnfortunately you didn't crack the secret code this time.\n\n"
-      @computer.display_pegs
+      @computer.display_random_code
       puts ' '
     end
   end
