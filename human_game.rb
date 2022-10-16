@@ -34,12 +34,12 @@ class HumanGame
 
   def display_result
     human_matches = []
-    comp_matches = []
+    computer_matches = []
     @choice.each_index do |index|
       if @choice[index] == @computer.random_code[index]
         print @keys.keys[1].to_s
         human_matches << index
-        comp_matches << index
+        computer_matches << index
       end
     end
 
@@ -47,12 +47,12 @@ class HumanGame
       next if human_matches.include?(index)
 
       @computer.random_code.each_index do |comp_index|
-        next if comp_matches.include?(comp_index)
+        next if computer_matches.include?(comp_index)
 
         if @choice[index] == @computer.random_code[comp_index]
           print @keys.keys[0].to_s
           human_matches << index
-          comp_matches << comp_index
+          computer_matches << comp_index
         end
       end
     end
