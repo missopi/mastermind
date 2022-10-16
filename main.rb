@@ -20,10 +20,9 @@ class Game
     choose_game_type
     case @option
     when 1
-      human = HumanGame.new
-      human.move
+      HumanGame.new.move
     when 2
-      CompGame.new
+      CompGame.new.start
     else
       puts 'Please choose a valid option'.colorize(:color => :red)
     end
