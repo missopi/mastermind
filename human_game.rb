@@ -70,14 +70,23 @@ class HumanGame
     end
   end
 
+  def repeat_game
+    puts 'Do you want to play again? Y/N'
+    replay = gets.chomp
+    puts 'thanks' if replay.downcase != 'y'
+    HumanGame.new.move if replay.downcase == 'y'
+  end
+
   def win
     if @user_input == @computer.random_code
       @guess = 13
       puts "\n\nCongratuations you guessed the secret code correctly!\n\n"
+      repeat_game
     elsif @user_input != @computer.random_code && @guess == 13
       puts "\n\nUnfortunately you didn't crack the secret code this time.\n\n"
       @computer.display_random_code
       puts ' '
+      repeat_game
     end
   end
 
