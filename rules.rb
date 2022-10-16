@@ -15,7 +15,7 @@ class MastermindRules
     puts "\n          ==============================   MASTERMIND   ==============================          "
     puts "\nMastermind is a code breaking game for two players. One player becomes the codemaker, the other "
     puts 'the codebreaker. The codebreaker tries to guess the pattern, in both order and colour, within'
-    puts "twelve turns.\n\n"
+    puts "twelve turns.  In this version, one of the players is the computer.\n\n"
   end
 
   def peg_rules
