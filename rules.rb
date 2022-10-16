@@ -7,8 +7,8 @@ require_relative 'keys'
 # class to display the title and rules of the game at the beginning
 class MastermindRules
   def initialize
-    @pegs = Pegs.new
-    @keys = Keys.new
+    @peg = Pegs.new
+    @key = Keys.new
   end
 
   def rules
@@ -20,14 +20,14 @@ class MastermindRules
 
   def peg_rules
     puts "The codemaker chooses a pattern of four code numbers from six available colours. Duplicates are allowed.\n\n"
-    @pegs.initial_pegs
+    @peg.initial_pegs
   end
 
   def key_rules
     puts "\nOnce a guess is made, the feedback is given in the form of zero to four white or red keys."
     puts 'White keys indicate a correct colour code number chosen in the wrong position. Red keys are used when'
     puts 'the guess is correct in both colour and position.'
-    @keys.initial_keys
+    @key.initial_keys
   end
 
   def rules_two

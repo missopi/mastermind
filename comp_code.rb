@@ -8,7 +8,7 @@ class CompCode
 
   def initialize
     @random_code = Array.new(4) { rand(1...6) }
-    @pegs = Pegs.new
+    @peg = Pegs.new
   end
 
   def display_code
@@ -21,6 +21,6 @@ class CompCode
 
   def display_pegs
     convert_code
-    puts "#{@pegs.pegs[@index[0]]} #{@pegs.pegs[@index[1]]} #{@pegs.pegs[@index[2]]} #{@pegs.pegs[@index[3]]}"
+    puts "#{@peg.colour[@index[0]]} #{@peg.colour[@index[1]]} #{@peg.colour[@index[2]]} #{@peg.colour[@index[3]]}"
   end
 end

@@ -4,10 +4,10 @@ require 'colorize'
 
 # handles the coloured pegs that show the code in the terminal
 class Pegs
-  attr_reader :pegs
+  attr_reader :colour
 
   def initialize
-    @pegs = ['  1  '.colorize(:color => :black, :background => :light_red),
+    @colour = ['  1  '.colorize(:color => :black, :background => :light_red),
              '  2  '.colorize(:background => :yellow),
              '  3  '.colorize(:color => :black, :background => :light_blue),
              '  4  '.colorize(:background => :green),
@@ -16,6 +16,6 @@ class Pegs
   end
 
   def initial_pegs
-    puts "#{pegs[0]} #{pegs[1]} #{pegs[2]} #{pegs[3]} #{pegs[4]} #{pegs[5]}\n"
+    puts "#{colour[0]} #{colour[1]} #{colour[2]} #{colour[3]} #{colour[4]} #{colour[5]}\n"
   end
 end
