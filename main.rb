@@ -22,7 +22,7 @@ class Game
     when 1
       HumanGame.new.move
     when 2
-      CompGame.new.start
+      CompGame.new.play
     else
       puts 'Please choose a valid option'.colorize(:color => :red)
     end
