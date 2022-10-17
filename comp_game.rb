@@ -6,69 +6,78 @@ require 'colorize'
 class CompGame
   def initialize
     @peg = Pegs.new
+    @code = Array.new(4) { rand(1..6) }
+    @code = [2, 5, 5, 3]
+    @total_guesses = 12
+
+    print 'Randomly generated start code: '
+    display @code
+    puts
   end
 
-  def move
-    over?
-    @guess = 1
-    computer_turn while @guess < 13
-  end
+  def play
+    num = 1
+    nums = []
+    guess = [num] * 4
+    @total_guesses.times do
+      print 'Computer guessed: '
+      display guess
+      puts
 
-  def user_input_valid?
-    true if @user_input.all?(1..6)
-  end
+      if guess == @code
+        puts 'The computer guessed the code correctly.'
+        return
+      end
 
-  def computer_first_guess
-    @comp_random_code = Array.new(4) { rand(1...6) }
-  end
+      red_pins, = check guess
+      (red_pins - nums.length).times { nums << num }
 
-  def new_guesses
-    correct_guess = []
-    @comp_random_code.each_index do |index|
-      correct_guess << index if @comp_random_code[index] == @user_input[index]
-      if correct_guess.include?(index)
-        @comp_random_code.pop
+      # add white pins to red pins - nums doesn't include pins when white currently and misses following red pins
+
+      guess = nums.clone
+      if guess.length < 4
+        num += 1
+        (4 - nums.length).times { guess << num }
+      else
+        guess.shuffle!
       end
     end
+
+    puts 'The computer failed to guess the code.'
   end
 
-  def convert_guess_to_index
-    @index = @comp_random_code.map { |number| number - 1 }
+  def display(guess)
+    guess.each { |i| print "#{@peg.format(i)} " }
   end
 
-  def display_guess
-    convert_guess_to_index
-    print "\nThe computer chose: "
-    print "#{@peg.colour[@index[0]]} #{@peg.colour[@index[1]]} #{@peg.colour[@index[2]]} #{@peg.colour[@index[3]]}\n"
-  end
+  def check(guess)
+    h_matches = []
+    c_matches = []
+    red_pins = 0
+    white_pins = 0
 
-  def computer_turn
-    computer_first_guess
-    display_guess
-    @guess += 1
-    win
-  end
-
-  def start
-    puts "\nChoose a 4 digit code for the computer to try and guess"
-    @user_input = gets.chomp.split('').map!(&:to_i)
-    if user_input_valid? == true
-      move
-    else
-      puts 'Please choose a valid 4 digit code'.colorize(:color => :red)
+    guess.each_index do |i|
+      if guess[i] == @code[i]
+        red_pins += 1
+        h_matches << i
+        c_matches << i
+      end
     end
-  end
 
-  def win
-    if @comp_random_code == @user_input
-      @guess = 13
-      puts "\nThe computer guessed the code correctly."
-    elsif @comp_random_code != @user_input && @guess == 13
-      puts "\nThe computer failed to guess the code."
+    guess.each_index do |i|
+      next if h_matches.include?(i)
+
+      @code.each_index do |j|
+        next if c_matches.include?(j)
+
+        if guess[i] == @code[j]
+          white_pins += 1
+          h_matches << i
+          c_matches << j
+        end
+      end
     end
-  end
 
-  def over?
-    win
+    [red_pins, white_pins]
   end
 end
