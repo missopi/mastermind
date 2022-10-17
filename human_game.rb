@@ -1,5 +1,7 @@
 # frozen_string_literal: true
+
 require 'colorize'
+
 # handles playing the actual game of mastermind if human playing
 class HumanGame
   def initialize
