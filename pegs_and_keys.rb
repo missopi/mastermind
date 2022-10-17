@@ -23,3 +23,17 @@ class Pegs
     puts "#{colour[0]} #{colour[1]} #{colour[2]} #{colour[3]} #{colour[4]} #{colour[5]}\n"
   end
 end
+
+# handles the coloured keys that show when guesses are correct
+class Keys
+  attr_reader :red, :white
+
+  def initialize
+    @white = ' ● '.colorize(:color => :white)
+    @red = ' ● '.colorize(:color => :red)
+  end
+
+  def initial_keys
+    puts "\n#{red}#{red}#{white}#{white}\n"
+  end
+end
