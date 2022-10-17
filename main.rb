@@ -13,14 +13,10 @@ class Game
 
   def choose_game_type
     puts 'Choose 1 to play as the codebreaker and 2 to play as the codemaker'
-    @option = gets.to_i
-  end
-
-  def initialize_game_type
-    choose_game_type
-    case @option
+    option = gets.to_i
+    case option
     when 1
-      HumanGame.new.move
+      HumanGame.new.play
     when 2
       CompGame.new.play
     else
@@ -29,5 +25,4 @@ class Game
   end
 end
 
-gameone = Game.new
-gameone.initialize_game_type
+Game.new.choose_game_type
