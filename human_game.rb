@@ -7,7 +7,7 @@ class HumanGame
   def initialize
     @peg = Pegs.new
     @key = Keys.new
-    @comp_code = Array.new(4) { rand(1...6) }
+    @random_comp_code = Array.new(4) { rand(1...6) }
   end
 
   def play
@@ -21,26 +21,26 @@ class HumanGame
   end
 
   def display_feedback(guess)
-    h_matches = []
-    c_matches = []
+    human_matches = []
+    computer_matches = []
     guess.each_index do |i|
-      if guess[i] == @comp_code[i]
+      if guess[i] == @random_comp_code[i]
         print @key.red.to_s
-        h_matches << i
-        c_matches << i
+        human_matches << i
+        computer_matches << i
       end
     end
 
     guess.each_index do |i|
-      next if h_matches.include?(i)
+      next if human_matches.include?(i)
 
-      @comp_code.each_index do |j|
-        next if c_matches.include?(j)
+      @random_comp_code.each_index do |j|
+        next if computer_matches.include?(j)
 
-        if guess[i] == @comp_code[j]
+        if guess[i] == @random_comp_code[j]
           print @key.white.to_s
-          h_matches << i
-          c_matches << j
+          human_matches << i
+          computer_matches << j
         end
       end
     end
@@ -53,13 +53,13 @@ class HumanGame
       display guess
       @counter += 1
       display_feedback guess
-      if guess == @comp_code
+      if guess == @random_comp_code
         @counter = 13
         puts "\n\nCongratuations you guessed the secret code correctly!\n\n"
         repeat_game
       elsif @counter == 13
         puts "\n\nUnfortunately you didn't crack the secret code this time.\n\n"
-        display @comp_code
+        display @random_comp_code
         puts ' '
         repeat_game
       end
