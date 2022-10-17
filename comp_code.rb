@@ -4,19 +4,19 @@ require 'colorize'
 
 # class to get and display computer generated code
 class CompCode
-  attr_reader :random_code
+  attr_reader :random_number
 
   def initialize
-    @random_code = Array.new(4) { rand(1...6) }
+    @random_number = Array.new(4) { rand(1...6) }
     @peg = Pegs.new
   end
 
   def random_comp_code
-    puts "#{random_code[0]} #{random_code[1]} #{random_code[2]} #{random_code[3]}"
+    puts "#{random_number[0]} #{random_number[1]} #{random_number[2]} #{random_number[3]}"
   end
 
   def convert_code_to_index
-    @index = random_code.map { |number| number - 1 }
+    @index = random_number.map { |number| number - 1 }
   end
 
   def display_random_code
