@@ -23,7 +23,7 @@ class CompGame
       puts
 
       if guess == @user_input
-        puts "\nThe computer guessed the code correctly."
+        puts "\nThe computer guessed the code correctly.\n\n"
         return
       end
 
@@ -39,7 +39,7 @@ class CompGame
       end
     end
 
-    puts "\nThe computer failed to guess the code."
+    puts "\nThe computer failed to guess the code.\n\n"
   end
 
   def display(guess)
