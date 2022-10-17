@@ -15,6 +15,10 @@ class Pegs
              '  6  '.colorize(:background => :cyan)]
   end
 
+  def format(peg)
+    @colour[peg - 1]
+  end
+
   def initial_pegs
     puts "#{colour[0]} #{colour[1]} #{colour[2]} #{colour[3]} #{colour[4]} #{colour[5]}\n"
   end
