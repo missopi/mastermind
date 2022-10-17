@@ -12,7 +12,7 @@ class CompGame
 
     print 'Randomly generated start code: '
     display @code
-    puts
+    puts "\n"
   end
 
   def play
@@ -20,19 +20,17 @@ class CompGame
     nums = []
     guess = [num] * 4
     @total_guesses.times do
-      print 'Computer guessed: '
+      print "\nComputer guessed: "
       display guess
-      puts
+      puts "\n"
 
       if guess == @code
         puts 'The computer guessed the code correctly.'
         return
       end
 
-      red_pins, = check guess
-      (red_pins - nums.length).times { nums << num }
-
-      # add white pins to red pins - nums doesn't include pins when white currently and misses following red pins
+      red_pins, white_pins = check guess
+      ((red_pins + white_pins) - nums.length).times { nums << num }
 
       guess = nums.clone
       if guess.length < 4
@@ -43,7 +41,7 @@ class CompGame
       end
     end
 
-    puts 'The computer failed to guess the code.'
+    puts "\nThe computer failed to guess the code."
   end
 
   def display(guess)
