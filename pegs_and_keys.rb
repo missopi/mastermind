@@ -15,6 +15,7 @@ class Pegs
              '  6  '.colorize(:background => :cyan)]
   end
 
+  # converts numbers chosen to index numbers so colours displayed are correct
   def format(peg)
     @colour[peg - 1]
   end
@@ -29,8 +30,8 @@ class Keys
   attr_reader :red, :white
 
   def initialize
-    @white = ' ● '.colorize(:color => :white)
-    @red = ' ● '.colorize(:color => :red)
+    @white = ' ● '.colorize(:color => :white) # correct colour, wrong position
+    @red = ' ● '.colorize(:color => :red) # exact match
   end
 
   def initial_keys

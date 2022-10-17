@@ -27,6 +27,9 @@ class CompGame
         return
       end
 
+      # code to keep track of how many red & white keys the guess has so the computer
+      # knows to keep hold of numbers it's previously guessed correctly
+
       red_keys, white_keys = check guess
       ((red_keys + white_keys) - numbers.length).times { numbers << number }
 
@@ -45,6 +48,8 @@ class CompGame
   def display(guess)
     guess.each { |i| print "#{@peg.format(i)} " }
   end
+
+  # method to loop through the guess and find any matches so it can assign red and white keys to them
 
   def check(guess)
     h_matches = []

@@ -16,9 +16,9 @@ class Game
     option = gets.to_i
     case option
     when 1
-      HumanGame.new.play
+      HumanGame.new.play # human player guesses the code
     when 2
-      CompGame.new.play
+      CompGame.new.play # computer guesses the code
     else
       puts 'Please choose a valid option'.colorize(:color => :red)
     end

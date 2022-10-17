@@ -15,6 +15,7 @@ class HumanGame
     player_turn while @counter < 13
   end
 
+  # displays numbers as coloured pegs
   def display(guess)
     puts
     guess.each { |i| print "#{@peg.format(i)} " }
